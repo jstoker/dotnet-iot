@@ -144,10 +144,6 @@ namespace Iot.Device.PiJuiceDevice
             var response = _piJuice.ReadCommand(PiJuiceCommand.BatteryCurrent, 2);
 
             int i = BinaryPrimitives.ReadInt16LittleEndian(response);
-            if ((i & (1 << 15)) == (1 << 15))
-            {
-                i -= (1 << 16);
-            }
 
             return new ElectricCurrent(i, ElectricCurrentUnit.Milliampere);
         }
@@ -172,10 +168,6 @@ namespace Iot.Device.PiJuiceDevice
             var response = _piJuice.ReadCommand(PiJuiceCommand.IOCurrent, 2);
 
             int i = BinaryPrimitives.ReadInt16LittleEndian(response);
-            if ((i & (1 << 15)) == (1 << 15))
-            {
-                i -= (1 << 16);
-            }
 
             return new ElectricCurrent(i, ElectricCurrentUnit.Milliampere);
         }
